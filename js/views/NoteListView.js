@@ -1,4 +1,4 @@
-app.views.EmployeeListView = Backbone.View.extend({
+app.views.NoteListView = Backbone.View.extend({
 
     tagName:'ul',
 
@@ -7,21 +7,21 @@ app.views.EmployeeListView = Backbone.View.extend({
     initialize:function () {
         var self = this;
         this.model.on("reset", this.render, this);
-        this.model.on("add", function (employee) {
-            self.$el.append(new app.views.EmployeeListItemView({model:employee}).render().el);
+        this.model.on("add", function (note) {
+            self.$el.append(new app.views.NoteListItemView({model:note}).render().el);
         });
     },
 
     render:function () {
         this.$el.empty();
-        _.each(this.model.models, function (employee) {
-            this.$el.append(new app.views.EmployeeListItemView({model:employee}).render().el);
+        _.each(this.model.models, function (note) {
+            this.$el.append(new app.views.NoteListItemView({model:note}).render().el);
         }, this);
         return this;
     }
 });
 
-app.views.EmployeeListItemView = Backbone.View.extend({
+app.views.NoteListItemView = Backbone.View.extend({
 
     tagName:"li",
 

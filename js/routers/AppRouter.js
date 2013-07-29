@@ -1,10 +1,7 @@
 app.routers.AppRouter = Backbone.Router.extend({
 
     routes: {
-        "":                         "home",
-        "employees/:id":            "employeeDetails",
-        "employees/:id/reports":    "reports",
-        "employees/:id/map":        "map"
+        "":                         "home"
     },
 
     initialize: function () {
@@ -22,32 +19,8 @@ app.routers.AppRouter = Backbone.Router.extend({
             app.homeView.delegateEvents(); // delegate events when the view is recycled
         }
         app.slider.slidePage(app.homeView.$el);
-    },
-
-    employeeDetails: function (id) {
-        var employee = new app.models.Employee({id: id});
-        employee.fetch({
-            success: function (data) {
-                // Note that we could also 'recycle' the same instance of EmployeeFullView
-                // instead of creating new instances
-                app.slider.slidePage(new app.views.EmployeeView({model: data}).render().$el);
-            }
-        });
-    },
-
-    reports: function (id) {
-        var employee = new app.models.Employee({id: id});
-        employee.fetch({
-            success: function (data) {
-                // Note that we could also 'recycle' the same instance of EmployeeFullView
-                // instead of creating new instances
-                app.slider.slidePage(new app.views.ReportsView({model: data}).render().$el);
-            }
-        });
-    },
-
-    map: function (id) {
-        app.slider.slidePage(new app.views.MapView().render().$el);
     }
+
+     
 
 });
