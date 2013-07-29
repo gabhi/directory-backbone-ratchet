@@ -2,6 +2,7 @@ app.routers.AppRouter = Backbone.Router.extend({
 
     routes: {
         "":                         "home",
+        "notes/index":              "home",
         "notes/:id":                "noteDetails",
     },
 
