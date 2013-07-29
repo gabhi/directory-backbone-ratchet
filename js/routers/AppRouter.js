@@ -1,7 +1,8 @@
 app.routers.AppRouter = Backbone.Router.extend({
 
     routes: {
-        "":                         "home"
+        "":                         "home",
+        "notes/:id":                "noteDetails",
     },
 
     initialize: function () {
@@ -19,6 +20,15 @@ app.routers.AppRouter = Backbone.Router.extend({
             app.homeView.delegateEvents(); // delegate events when the view is recycled
         }
         app.slider.slidePage(app.homeView.$el);
+    },
+    noteDetails: function (id) {
+        var note = new app.models.NoteModel({id: id});
+        note.fetch({
+            success: function (data) {
+                
+                app.slider.slidePage(new app.views.NoteView({model: data}).render().$el);
+            }
+        });
     }
 
      
