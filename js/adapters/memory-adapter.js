@@ -33,6 +33,13 @@ app.adapters.note = (function () {
             deferred.resolve(results);
             return deferred.promise();
         },
+        saveNote = function (note) {
+            alert("inside save method");
+            //notes = JSON.parse(window.localStorage.getItem("notes"));
+            //notes.add(note);
+window.localStorage.setItem("notes",JSON.stringify(note) );
+
+        },
 
         findByManager = function (managerId) {
             var deferred = $.Deferred(),
@@ -43,6 +50,7 @@ app.adapters.note = (function () {
             deferred.resolve(results);
             return deferred.promise();
         };
+
 
 
     // Store sample data in Local Storage
@@ -57,7 +65,8 @@ app.adapters.note = (function () {
     return {
         findById: findById,
         findByName: findByName,
-        findByManager: findByManager
+        findByManager: findByManager,
+        saveNote: saveNote
     };
 
 

@@ -4,6 +4,7 @@ app.routers.AppRouter = Backbone.Router.extend({
         "":                         "home",
         "notes/index":              "home",
         "notes/:id":                "noteDetails",
+        "note/new":                "newNote",
     },
 
     initialize: function () {
@@ -30,6 +31,15 @@ app.routers.AppRouter = Backbone.Router.extend({
                 app.slider.slidePage(new app.views.NoteView({model: data}).render().$el);
             }
         });
+    },
+
+    newNote: function () {
+        var note = new app.models.NoteModel();
+           
+
+          app.noteAddView = new app.views.NoteAddView();
+            app.noteAddView.render();
+            app.slider.slidePage(app.noteAddView.$el);
     }
 
      
